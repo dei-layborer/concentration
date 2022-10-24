@@ -1,0 +1,11 @@
+# Layout
+
+If we were doing this with real cards, we'd simply lay them out in a grid.  Other patterns are certainly possible, but I think it's safe to say that a simple grid is what most people think of (and go to).  For a human, it's trivial to do this kind of layout: simply start putting cards in a row with what seems like a good amount of space between them, and go on to the next row once you run out of space.  Maybe if you're being particularly fancy, you'll arrange the first row to even out the space between cards and base your subsequent rows on that.  You may or may not care whether all the rows have the same number (and if you do, it's easy enough to shuffle things around).
+
+Even though I'm doing a computerized version of the game, this first step doesn't change, at least not in general terms.  Distributing the cards into a layout that makes sense and feels "right" is the first place to start, since none of the other functionality matters if this part doesn't work.
+
+Let's start with the cards themselves.  It would be easy enough to just set them to be x pixels wide by y pixels tall and be done with it.  But of course this falls apart very quickly in the face of different screen resolutions, browser window sizes, and the like.  So we need to start thinking in terms of proportions and relative units rather than hard-coding a specific size.
+
+So the first thing to do is figure out its aspect ratio, i.e. the ratio of height to width.  What seemed to me the best two options are standard index cards (3" x 5" here in the U.S.) or a typical playing card, which (again in the U.S.) is 3.5" by 2.5".  For the latter, we get a ratio of 1.4:1 (height vs. width), as opposed to 1.67:1 for an index card (assuming we make the longer side the "height").  After playing with them some, I decided I prefer the index card's ratio (1.67:1), so went with that.
+
+With that done, it's time to start thinking about how to proportion everything such that it'll look right in a browser window of unknown dimensions.  
