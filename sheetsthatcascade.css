@@ -3,6 +3,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     overflow: hidden;
 }
 
@@ -10,18 +11,24 @@ body {
     background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
 }
 
-#file-container {
+#picker-container {
     position: absolute;
     left: 0;
     top: 0.5vh;
     background-color: #222222;
-    padding: 1vh;
-    padding-right: 2vh;
+    padding: 0.25vh 0 0.25vh 0.5vh;
     border-radius: 0 1vh 1vh 0;
     box-shadow: 2px 2px 4px 2px #22222266;
+    transform-origin: left center;
+    display: grid;
+    grid-template-columns: 1fr 48px;
+    align-items: center;
+    justify-items: end;
+    transform: translateX(-1000px);
+    transition: transform 0.4s;
 }
 
-#filePicker {
+#picker-container button {
     appearance: none;
     border: 0;
     border: 1px dotted #fafafe;
@@ -29,15 +36,30 @@ body {
     font-family: "IBM Plex Mono";
     text-transform: uppercase;
     color: #fafafe;
-    padding: 0.5vh;
+    padding: 0.25vh 0.5vh;
+    height: min-content;
 }
 
-#fileInput {
-    display: none;
+#picker-container button:active {
+    background-color: #428db9;
+
+}
+
+#picker-container svg {
+    position: relative;
+    fill: #fafafe;
+    padding: 0;
+    left: 6px;
+    cursor: pointer;
+    transition: transform 0.4s;
+}
+
+.collapsed {
+    transform: translateX(-5em);
 }
 
 #container {
-    margin: 5vh auto;
+    margin: 4vh auto;
     width: 90%;
     height: 95%;    
     display: flex;
@@ -75,11 +97,13 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
+    align-content: center;
     justify-content: center;
     align-items: center;
-    font-family: "Work Sans", sans-serif;
+    text-align: center;
+    font-family: "Suez One", sans-serif;
     font-weight: bold;
-    font-size: clamp(1rem, 2rem, 3.5rem);
+    font-size: clamp(2rem, 4rem, 100%);
     background-color: #fafafe;
     border-radius: 15px;
     backface-visibility: hidden;

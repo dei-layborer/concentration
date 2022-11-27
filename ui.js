@@ -16,8 +16,6 @@ function init() {
     // figure out how many rows/columns are needed.
     const cardCount = dataList.length;
 
-
-
     // shuffle
     for (let i = 0; i < dataList.length; i++) {
 
@@ -33,7 +31,31 @@ function init() {
         container.append(newCard);
     }
 
+    // other UI bits
+    selectorToggle();
+    const selectToggle = document.getElementById('picker-toggler').addEventListener('click', selectorToggle);
+
 }
+
+function selectorToggle() {
+
+    const deckSelector = document.getElementById('picker-container');
+    const containerWidth = deckSelector.getBoundingClientRect().width;
+    const arrow = document.getElementById('picker-toggler');
+
+    // parse current transform value
+    let currentTransform = deckSelector.style.transform.substring(11, deckSelector.style.transform.length - 1);
+    
+    if (currentTransform == '' || currentTransform.includes('0px')) {   // closed
+        deckSelector.style.transform = `translateX(-${containerWidth - 26}px)`;
+        arrow.style.transform = 'rotate(0)';
+    } else {    // open
+        deckSelector.style.transform = 'translateX(0)';
+        arrow.style.transform = 'rotate(180deg)';
+    }
+
+}
+
 
 // flip the card and check for matches
 function cardClick(ev) {
@@ -41,10 +63,6 @@ function cardClick(ev) {
     const flipped = ev.target;
     flipped.classList.toggle('flipped');
     
-    
-
-
-
 }
 
 function buildNewCard(txt) {
